@@ -22,7 +22,7 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
         });
     };
 
-    const changeUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeUser = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setUserFormData(prev => ({...prev, [e.target.name]: e.target.value}));
     };
 
@@ -42,10 +42,8 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
         });
     };
 
-
-
     return (
-        <form onSubmit={getNewUser} >
+        <form onSubmit={getNewUser}>
             <div className="form-group">
                 <label htmlFor="name">UserItem name</label>
                 <input
@@ -81,6 +79,19 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
                     id="active"
                     placeholder="active"
                 />
+            </div>
+            <div className="form-group">
+                <label htmlFor="role">active</label>
+                <select
+                    onChange={changeUser}
+                    value={userFormData.role}
+                    name="role"
+                    id="role"
+                >
+                    <option value="user">User</option>
+                    <option value="redactor">Redactor</option>
+                    <option value="admin">Admin</option>
+                </select>
             </div>
             <button type="submit" className="btn btn-primary">Create UserItem</button>
         </form>
